@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 Guess Master 3.0</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    :root {
+      --primary: #7c3aed;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --bg: rgba(255, 255, 255, 0.2);
+      --text: #fff;
+      --glass: rgba(255,255,255,0.15);
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 400px;
+      background: var(--glass);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      text-align: center;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.5);
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+
+    select, input {
+      width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      text-align: center;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #111;
+    }
+
+    button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: var(--accent);
+      transform: scale(1.05);
+    }
+
+    #hasil {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    #riwayat {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    #level {
+      background: #e0e7ff;
+    }
+
+    .glow {
+      text-shadow: 0 0 15px #00ffcc;
+      animation: blink 0.8s infinite alternate;
+    }
+
+    .score {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 8px;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+
+    @keyframes blink {
+      from {opacity: 1;}
+      to {opacity: 0.6;}
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Guess Master 3.0</h1>
+    <p>Pilih level, lalu coba tebak angkanya!</p>
+
+    <select id="level" onchange="setLevel()">
+      <option value="10">Easy (1–10)</option>
+      <option value="30">Medium (1–30)</option>
+      <option value="50">Hard (1–50)</option>
+    </select>
+
+    <input type="number" id="tebakan" placeholder="Masukkan angka...">
+    <div>
+      <button onclick="cekTebakan()">Cek</button>
+      <button onclick="resetGame()">Ulang</button>
+    </div>
+
+    <p id="hasil"></p>
+    <div id="riwayat"></div>
+    <div class="score">
+      ❤️ Kesempatan: <span id="kesempatan">5</span> | 🧠 Skor: <span id="skor">0</span>
+    </div>
+  </div>
+
+  <!-- Efek suara -->
+  <audio id="soundWin" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_bf4bb75d7c.mp3?filename=success-1-6297.mp3"></audio>
+  <audio id="soundLose" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_119b4acfd1.mp3?filename=error-1-126517.mp3"></audio>
+  <audio id="soundClick" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_1b2322ab1c.mp3?filename=click-21156.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
